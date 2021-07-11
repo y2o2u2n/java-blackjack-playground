@@ -1,31 +1,37 @@
 package nextstep.blackjack.model;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public enum Denomination {
-    ACE(1, 11),
-    TWO(2),
-    THREE(3),
-    FOUR(4),
-    FIVE(5),
-    SIX(6),
-    SEVEN(7),
-    EIGHT(8),
-    NINE(9),
-    TEN(10),
-    JACK(10),
-    QUEEN(10),
-    KING(10);
+    ACE(1, "1"),
+    TWO(2,"2"),
+    THREE(3,"3"),
+    FOUR(4,"4"),
+    FIVE(5,"5"),
+    SIX(6,"6"),
+    SEVEN(7,"7"),
+    EIGHT(8,"8"),
+    NINE(9,"9"),
+    TEN(10,"10"),
+    JACK(10,"J"),
+    QUEEN(10,"Q"),
+    KING(10,"K");
 
-    private final List<Integer> values;
+    private final int value;
+    private final String name;
 
-    Denomination(int... values) {
-        this.values = Arrays.stream(values).boxed().collect(Collectors.toList());
+    Denomination(int value, String name) {
+        this.value = value;
+        this.name = name;
     }
 
-    public List<Integer> getValues() {
-        return values;
+    public boolean isAce() {
+        return this == ACE;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public String getName() {
+        return name;
     }
 }

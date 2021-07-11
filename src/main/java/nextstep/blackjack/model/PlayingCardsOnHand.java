@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PlayingCards {
+public class PlayingCardsOnHand {
     private final List<PlayingCard> playingCards;
 
-    public PlayingCards() {
+    public PlayingCardsOnHand() {
         this.playingCards = new ArrayList<>();
     }
 
@@ -16,30 +16,35 @@ public class PlayingCards {
     }
 
     public PossibleSums calculatePossibleSums() {
-        List<List<Integer>> denominationValuesList = playingCards.stream()
-                .map(PlayingCard::getDenominationValues)
-                .collect(Collectors.toList());
-
         List<Integer> possibleSums = new ArrayList<>();
-        perm(denominationValuesList, possibleSums, 0, 0);
+        perm(playingCards, possibleSums, 0, 0);
 
         return PossibleSums.of(possibleSums.stream().distinct().mapToInt(i -> i).toArray());
     }
 
     private void perm(
-            List<List<Integer>> denominationValuesList,
+            List<PlayingCard> playingCards,
             List<Integer> possibleSums,
             int index,
             int acc
     ) {
-        if (denominationValuesList.size() == index) {
+        if (playingCards.size() == index) {
             possibleSums.add(acc);
             return;
         }
 
-        List<Integer> denominationValues = denominationValuesList.get(index);
-        for (int denominationValue : denominationValues) {
-            perm(denominationValuesList, possibleSums, index + 1, acc + denominationValue);
+        PlayingCard playingCard = playingCards.get(index);
+        Denomination denomination = playingCard.getDenomination();
+        perm(playingCards, possibleSums, index + 1, acc + denomination.getValue());
+        if (denomination.isAce()) {
+            perm(playingCards, possibleSums, index + 1, acc + 11);
         }
+    }
+
+    @Override
+    public String toString() {
+        return playingCards.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", "));
     }
 }

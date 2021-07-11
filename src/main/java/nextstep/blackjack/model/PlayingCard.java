@@ -1,21 +1,26 @@
 package nextstep.blackjack.model;
 
-import java.util.List;
 import java.util.Objects;
 
 public class PlayingCard {
     private Suit suit;
     private Denomination denomination;
-    private boolean isOpened;
+
+    public PlayingCard(Suit suit, Denomination denomination) {
+        this(suit, denomination, false);
+    }
 
     public PlayingCard(Suit suit, Denomination denomination, boolean isOpened) {
         this.suit = suit;
         this.denomination = denomination;
-        this.isOpened = isOpened;
     }
 
-    public List<Integer> getDenominationValues() {
-        return denomination.getValues();
+    public Suit getSuit() {
+        return suit;
+    }
+
+    public Denomination getDenomination() {
+        return denomination;
     }
 
     @Override
@@ -29,5 +34,10 @@ public class PlayingCard {
     @Override
     public int hashCode() {
         return Objects.hash(suit, denomination);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s%s", denomination.getName(), suit.getName());
     }
 }
