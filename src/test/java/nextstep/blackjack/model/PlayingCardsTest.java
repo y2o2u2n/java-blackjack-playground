@@ -1,4 +1,4 @@
-package nextstep.blackjack;
+package nextstep.blackjack.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PlayingCardsTest {
-    private  PlayingCards aPlayingCards;
+    private PlayingCards aPlayingCards;
     private  PlayingCards bPlayingCards;
     private  PlayingCards cPlayingCards;
 

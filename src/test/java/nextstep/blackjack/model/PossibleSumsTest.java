@@ -1,8 +1,8 @@
-package nextstep.blackjack;
+package nextstep.blackjack.model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PossibleSumsTest {
 

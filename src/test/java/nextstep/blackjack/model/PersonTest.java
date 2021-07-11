@@ -1,4 +1,4 @@
-package nextstep.blackjack;
+package nextstep.blackjack.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
