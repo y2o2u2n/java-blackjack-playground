@@ -22,9 +22,9 @@ class PersonTest {
     @BeforeEach
     void setUp() {
         dealer = new Dealer();
-        playerA = new Player();
-        playerB = new Player();
-        playerC = new Player();
+        playerA = new Player("pobi");
+        playerB = new Player("jason");
+        playerC = new Player("y2o2u2n");
 
         dealer.handOut(dealer, dealerPlayingCards);
         dealer.handOut(playerA, playerAPlayingCards);

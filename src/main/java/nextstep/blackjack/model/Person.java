@@ -16,4 +16,6 @@ public abstract class Person {
     public PossibleSums checkPossibleSums() {
         return playingCards.calculatePossibleSums();
     }
+
+    public abstract String getName();
 }
