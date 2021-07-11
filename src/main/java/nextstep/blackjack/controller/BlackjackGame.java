@@ -10,13 +10,13 @@ import nextstep.blackjack.view.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Blackjack {
+public class BlackjackGame {
     private final Dealer dealer;
     private final List<Player> players;
     private final Deck deck;
     private final Bank bank;
 
-    public Blackjack() {
+    public BlackjackGame() {
         dealer = new Dealer();
         players = new ArrayList<>();
         deck = new Deck();

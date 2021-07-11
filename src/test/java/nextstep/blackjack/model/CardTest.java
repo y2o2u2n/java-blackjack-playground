@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PlayingCardTest {
+class CardTest {
 
     @Test
     void equals() {
-        assertEquals(new PlayingCard(Suit.SPADE, Denomination.ACE, true), new PlayingCard(Suit.SPADE, Denomination.ACE, false));
+        assertEquals(new Card(Suit.SPADE, Denomination.ACE, true), new Card(Suit.SPADE, Denomination.ACE, false));
     }
 }

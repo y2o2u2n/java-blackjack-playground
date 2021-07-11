@@ -3,23 +3,23 @@ package nextstep.blackjack.model;
 import java.util.List;
 
 public abstract class Person {
-    private final PlayingCardsOnHand playingCardsOnHand;
+    private final Cards cards;
 
     public Person() {
-        this.playingCardsOnHand = new PlayingCardsOnHand();
+        this.cards = new Cards();
     }
 
-    protected void receive(List<PlayingCard> playingCards) {
-        this.playingCardsOnHand.addAll(playingCards);
+    protected void receive(List<Card> cards) {
+        this.cards.addAll(cards);
     }
 
     public PossibleSums checkPossibleSums() {
-        return playingCardsOnHand.calculatePossibleSums();
+        return cards.calculatePossibleSums();
     }
 
     public abstract String getName();
 
-    public PlayingCardsOnHand getPlayingCards() {
-        return playingCardsOnHand;
+    public Cards getPlayingCards() {
+        return cards;
     }
 }

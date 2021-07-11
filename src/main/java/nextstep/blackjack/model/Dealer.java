@@ -5,8 +5,8 @@ import java.util.List;
 public class Dealer extends Person {
     private static final String NAME = "딜러";
 
-    public void handOut(Person person, List<PlayingCard> playingCards) {
-        person.receive(playingCards);
+    public void handOut(Person person, List<Card> cards) {
+        person.receive(cards);
     }
 
     @Override

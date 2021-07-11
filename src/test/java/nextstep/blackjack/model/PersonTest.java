@@ -14,10 +14,10 @@ class PersonTest {
     private Player playerB;
     private Player playerC;
 
-    private final List<PlayingCard> dealerPlayingCards = Arrays.asList(new PlayingCard(Suit.DIAMOND, Denomination.THREE, true), new PlayingCard(Suit.CLUB, Denomination.NINE, false));
-    private final List<PlayingCard> playerAPlayingCards = Arrays.asList(new PlayingCard(Suit.HEART, Denomination.TWO, true), new PlayingCard(Suit.SPADE, Denomination.EIGHT, true));
-    private final List<PlayingCard> playerBPlayingCards = Arrays.asList(new PlayingCard(Suit.CLUB, Denomination.SEVEN, true), new PlayingCard(Suit.SPADE, Denomination.KING, true));
-    private final List<PlayingCard> playerCPlayingCards = Arrays.asList(new PlayingCard(Suit.CLUB, Denomination.ACE, true), new PlayingCard(Suit.SPADE, Denomination.KING, true));
+    private final List<Card> dealerCards = Arrays.asList(new Card(Suit.DIAMOND, Denomination.THREE, true), new Card(Suit.CLUB, Denomination.NINE, false));
+    private final List<Card> playerACards = Arrays.asList(new Card(Suit.HEART, Denomination.TWO, true), new Card(Suit.SPADE, Denomination.EIGHT, true));
+    private final List<Card> playerBCards = Arrays.asList(new Card(Suit.CLUB, Denomination.SEVEN, true), new Card(Suit.SPADE, Denomination.KING, true));
+    private final List<Card> playerCCards = Arrays.asList(new Card(Suit.CLUB, Denomination.ACE, true), new Card(Suit.SPADE, Denomination.KING, true));
 
     @BeforeEach
     void setUp() {
@@ -26,10 +26,10 @@ class PersonTest {
         playerB = new Player("jason");
         playerC = new Player("y2o2u2n");
 
-        dealer.handOut(dealer, dealerPlayingCards);
-        dealer.handOut(playerA, playerAPlayingCards);
-        dealer.handOut(playerB, playerBPlayingCards);
-        dealer.handOut(playerC, playerCPlayingCards);
+        dealer.handOut(dealer, dealerCards);
+        dealer.handOut(playerA, playerACards);
+        dealer.handOut(playerB, playerBCards);
+        dealer.handOut(playerC, playerCCards);
     }
 
     @Test
