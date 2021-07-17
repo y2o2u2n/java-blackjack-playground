@@ -21,12 +21,12 @@ public class InputView {
         return players;
     }
 
-    public static long inputPlayerBetAmount() {
+    public static int inputPlayerBetAmount() {
         String input = scanner.next();
         return inputPlayerBetAmount(input);
     }
 
-    public static long inputPlayerBetAmount(String input) {
-        return Long.parseLong(input);
+    public static int inputPlayerBetAmount(String input) {
+        return Integer.parseInt(input);
     }
 }

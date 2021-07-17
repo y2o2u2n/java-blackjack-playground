@@ -9,34 +9,25 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PersonTest {
-    private Dealer dealer;
-    private Player playerA;
-    private Player playerB;
-    private Player playerC;
+	private Deck deck;
+	private Person person;
 
-    private final List<Card> dealerCards = Arrays.asList(new Card(Suit.DIAMOND, Denomination.THREE, true), new Card(Suit.CLUB, Denomination.NINE, false));
-    private final List<Card> playerACards = Arrays.asList(new Card(Suit.HEART, Denomination.TWO, true), new Card(Suit.SPADE, Denomination.EIGHT, true));
-    private final List<Card> playerBCards = Arrays.asList(new Card(Suit.CLUB, Denomination.SEVEN, true), new Card(Suit.SPADE, Denomination.KING, true));
-    private final List<Card> playerCCards = Arrays.asList(new Card(Suit.CLUB, Denomination.ACE, true), new Card(Suit.SPADE, Denomination.KING, true));
+	@BeforeEach
+	void setUp() {
+		deck = new Deck();
+		person = new Person() {
+			@Override
+			public String getName() {
+				return "person";
+			}
+		};
+	}
 
-    @BeforeEach
-    void setUp() {
-        dealer = new Dealer();
-        playerA = new Player("pobi");
-        playerB = new Player("jason");
-        playerC = new Player("y2o2u2n");
+	@Test
+	void receive() {
+		deck.dealCards(person, 2);
+		PlayingCards playingCards = person.getPlayingCards();
 
-        dealer.handOut(dealer, dealerCards);
-        dealer.handOut(playerA, playerACards);
-        dealer.handOut(playerB, playerBCards);
-        dealer.handOut(playerC, playerCCards);
-    }
-
-    @Test
-    void calculateSum() {
-        assertEquals(PossibleSums.of(12), dealer.checkPossibleSums());
-        assertEquals(PossibleSums.of(10), playerA.checkPossibleSums());
-        assertEquals(PossibleSums.of(17), playerB.checkPossibleSums());
-        assertEquals(PossibleSums.of(11, 21), playerC.checkPossibleSums());
-    }
+		assertEquals(2, playingCards.size());
+	}
 }

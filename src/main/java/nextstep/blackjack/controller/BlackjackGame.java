@@ -1,6 +1,5 @@
 package nextstep.blackjack.controller;
 
-import nextstep.blackjack.model.Bank;
 import nextstep.blackjack.model.Dealer;
 import nextstep.blackjack.model.Deck;
 import nextstep.blackjack.model.Player;
@@ -14,19 +13,16 @@ public class BlackjackGame {
     private final Dealer dealer;
     private final List<Player> players;
     private final Deck deck;
-    private final Bank bank;
 
     public BlackjackGame() {
         dealer = new Dealer();
         players = new ArrayList<>();
         deck = new Deck();
-        bank = new Bank();
     }
 
     public void start() {
         beforeStart();
-        shuffleDeck();
-        initialHandOut();
+        initialDealCards();
     }
 
     private void beforeStart() {
@@ -35,17 +31,13 @@ public class BlackjackGame {
         this.players.addAll(players);
         this.players.forEach(player -> {
             OutputView.printInputPlayerBetAmount(player);
-            bank.deposit(player, InputView.inputPlayerBetAmount());
+            player.decideBetAmount(InputView.inputPlayerBetAmount());
         });
     }
 
-    private void shuffleDeck() {
-        deck.shuffle();
-    }
-
-    private void initialHandOut() {
-        dealer.handOut(dealer, deck.draw(2));
-        players.forEach(player -> dealer.handOut(player, deck.draw(2)));
-        OutputView.printDealPlayingCards(dealer, players);
+    private void initialDealCards() {
+        deck.dealCards(dealer, 2);
+        players.forEach(player -> deck.dealCards(player, 2));
+        OutputView.printPlayingCards(dealer, players);
     }
 }

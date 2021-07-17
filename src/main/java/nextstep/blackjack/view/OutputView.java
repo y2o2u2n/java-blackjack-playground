@@ -3,7 +3,7 @@ package nextstep.blackjack.view;
 import nextstep.blackjack.model.Dealer;
 import nextstep.blackjack.model.Person;
 import nextstep.blackjack.model.Player;
-import nextstep.blackjack.model.Cards;
+import nextstep.blackjack.model.PlayingCards;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +18,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printDealPlayingCards(
+    public static void printPlayingCards(
             Dealer dealer,
             List<Player> players
     ) {
@@ -31,8 +31,8 @@ public class OutputView {
 
     public static void printPlayingCards(Person person) {
         String name = person.getName();
-        Cards cards = person.getPlayingCards();
-        String message = String.format("%s: %s", name, cards.toString());
+        PlayingCards playingCards = person.getPlayingCards();
+        String message = String.format("%s: %s", name, playingCards.toString());
         System.out.println(message);
     }
 }
