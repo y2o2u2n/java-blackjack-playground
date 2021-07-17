@@ -5,6 +5,7 @@ import java.util.*;
 public class Deck {
 	private static final Set<Card> PLAYING_CARDS;
 
+	// TODO : fix indent depth
 	static {
 		PLAYING_CARDS = new HashSet<>();
 		Arrays.stream(Suit.values()).forEach(

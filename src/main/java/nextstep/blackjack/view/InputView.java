@@ -1,5 +1,6 @@
 package nextstep.blackjack.view;
 
+import nextstep.blackjack.model.HitOrStay;
 import nextstep.blackjack.model.Player;
 
 import java.util.ArrayList;
@@ -28,5 +29,14 @@ public class InputView {
 
     public static int inputPlayerBetAmount(String input) {
         return Integer.parseInt(input);
+    }
+
+    public static HitOrStay inputPlayerHitOrStay() {
+        String input = scanner.next();
+        return inputPlayerHitOrStay(input);
+    }
+
+    public static HitOrStay inputPlayerHitOrStay(String input) {
+        return HitOrStay.findBy(input);
     }
 }

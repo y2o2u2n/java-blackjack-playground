@@ -11,10 +11,6 @@ public class Card {
 		this.denomination = denomination;
 	}
 
-	public Suit getSuit() {
-		return suit;
-	}
-
 	public Denomination getDenomination() {
 		return denomination;
 	}

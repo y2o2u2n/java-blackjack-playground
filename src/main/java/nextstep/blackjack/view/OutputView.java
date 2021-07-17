@@ -35,4 +35,33 @@ public class OutputView {
         String message = String.format("%s: %s", name, playingCards.toString());
         System.out.println(message);
     }
+
+    public static void printInputPlayerHitOrStay(Player player) {
+        String message = String.format("%s는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)", player.getName());
+        System.out.println(message);
+    }
+
+    public static void printDealCardToDealer() {
+        String message = "딜러는 16이하라 한장의 카드를 더 받았습니다.";
+        System.out.println(message);
+    }
+
+    public static void printGameResult(Dealer dealer, List<Player> players) {
+        printGameResult(dealer);
+        players.forEach(OutputView::printGameResult);
+    }
+
+    public static void printGameResult(Person person) {
+        String message = String.format("%s 카드: %s - 결과: %s", person.getName(), person.getPlayingCards().toString(), person.getResultStr());
+        System.out.println(message);
+    }
+
+    public static void printFinalEarning() {
+        System.out.println("## 최종 수익");
+    }
+
+    public static void printEarning(Dealer dealer, List<Player> players) {
+        System.out.println(String.format("%s: %d", dealer.getName(), (int) dealer.getEarning(players)));
+        players.forEach(player -> System.out.println(String.format("%s: %d", player.getName(), (int) player.getEarning(dealer))));
+    }
 }

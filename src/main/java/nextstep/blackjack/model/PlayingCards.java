@@ -13,7 +13,6 @@ public class PlayingCards {
 	}
 
 	public void addAll(List<Card> playingCards) {
-		playingCards.sort(Comparator.comparingInt(o -> o.getDenomination().getValue()));
 		this.playingCards.addAll(playingCards);
 	}
 
@@ -46,6 +45,9 @@ public class PlayingCards {
 		if (playingCards.size() != 2) {
 			return false;
 		}
+
+		List<Card> playingCards = new ArrayList<>(this.playingCards);
+		playingCards.sort(Comparator.comparingInt(o -> o.getDenomination().getValue()));
 
 		Card first = playingCards.get(0);
 		Card second = playingCards.get(1);

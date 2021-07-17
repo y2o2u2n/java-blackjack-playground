@@ -1,43 +1,77 @@
 package nextstep.blackjack.controller;
 
+import java.util.List;
+
 import nextstep.blackjack.model.Dealer;
 import nextstep.blackjack.model.Deck;
+import nextstep.blackjack.model.HitOrStay;
 import nextstep.blackjack.model.Player;
 import nextstep.blackjack.view.InputView;
 import nextstep.blackjack.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BlackjackGame {
-    private final Dealer dealer;
-    private final List<Player> players;
-    private final Deck deck;
+	private final Dealer dealer;
+	private final List<Player> players;
+	private final Deck deck;
 
-    public BlackjackGame() {
-        dealer = new Dealer();
-        players = new ArrayList<>();
-        deck = new Deck();
-    }
+	public BlackjackGame() {
+		dealer = new Dealer();
+		players = inputPlayerNames();
+		players.forEach(this::inputPlayerBetAmount);
+		deck = new Deck();
+	}
 
-    public void start() {
-        beforeStart();
-        initialDealCards();
-    }
+	public void start() {
+		dealCardsFirstly();
+		dealCardsAdditionally();
+		printResult();
+	}
 
-    private void beforeStart() {
-        OutputView.printInputPlayerNames();
-        List<Player> players = InputView.inputPlayerNames();
-        this.players.addAll(players);
-        this.players.forEach(player -> {
-            OutputView.printInputPlayerBetAmount(player);
-            player.decideBetAmount(InputView.inputPlayerBetAmount());
-        });
-    }
+	private List<Player> inputPlayerNames() {
+		OutputView.printInputPlayerNames();
+		return InputView.inputPlayerNames();
+	}
 
-    private void initialDealCards() {
-        deck.dealCards(dealer, 2);
-        players.forEach(player -> deck.dealCards(player, 2));
-        OutputView.printPlayingCards(dealer, players);
-    }
+	private void inputPlayerBetAmount(Player player) {
+		OutputView.printInputPlayerBetAmount(player);
+		player.decideBetAmount(InputView.inputPlayerBetAmount());
+	}
+
+	private void dealCardsFirstly() {
+		deck.dealCards(dealer, 2);
+		players.forEach(player -> deck.dealCards(player, 2));
+		OutputView.printPlayingCards(dealer, players);
+	}
+
+	private void dealCardsAdditionally() {
+		players.forEach(this::dealCardUntilStayOrBust);
+		if (dealer.hasLessThanOrEqual16()) {
+			OutputView.printDealCardToDealer();
+			deck.dealCards(dealer, 1);
+			OutputView.printPlayingCards(dealer);
+		}
+	}
+
+	// TODO : fix indent depth
+	private void dealCardUntilStayOrBust(Player player) {
+		if (player.hasBlackjack()) {
+			return;
+		}
+
+		HitOrStay hitOrStay;
+		do {
+			OutputView.printInputPlayerHitOrStay(player);
+			hitOrStay = InputView.inputPlayerHitOrStay();
+			if (hitOrStay == HitOrStay.HIT) {
+				deck.dealCards(player, 1);
+				OutputView.printPlayingCards(player);
+			}
+		} while (hitOrStay == HitOrStay.HIT && !player.hasBurst());
+	}
+
+	private void printResult() {
+		OutputView.printGameResult(dealer, players);
+		OutputView.printFinalEarning();
+		OutputView.printEarning(dealer, players);
+	}
 }

@@ -1,5 +1,6 @@
 package nextstep.blackjack.view;
 
+import nextstep.blackjack.model.HitOrStay;
 import nextstep.blackjack.model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,5 +29,12 @@ class InputViewTest {
     @Test
     void inputPlayerBetAmount() {
         assertEquals(100L, InputView.inputPlayerBetAmount("100"));
+    }
+
+    @Test
+    void inputPlayerHitOrPlay() {
+        assertEquals(HitOrStay.HIT, InputView.inputPlayerHitOrStay("y"));
+        assertEquals(HitOrStay.STAY, InputView.inputPlayerHitOrStay("n"));
+        assertThrows(IllegalArgumentException.class, () -> InputView.inputPlayerHitOrStay("any"));
     }
 }
